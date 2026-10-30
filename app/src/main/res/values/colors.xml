@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="library_primary">#134171</color>
+    <color name="library_secondary">#16A6A1</color>
+    <color name="library_bg">#F4F7FA</color>
+    <color name="library_white">#FFFFFF</color>
+    <color name="library_text">#263445</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="teal_color">#169F9C</color>
+</resources>
