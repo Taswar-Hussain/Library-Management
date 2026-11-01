@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,7 +39,8 @@ public class savedBooks extends Fragment implements ListAdapterSaved{
 
     BookForSave bookToSave;
 
-
+    ImageView imgstate;
+    TextView txtState;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -93,6 +96,8 @@ public class savedBooks extends Fragment implements ListAdapterSaved{
         recyclerView = view.findViewById(R.id.recycler_Save);
         booksList = new ArrayList<>();
         originalList = new ArrayList<>();
+        imgstate = view.findViewById(R.id.img_empty);
+        txtState = view.findViewById(R.id.nodatatxt);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapterCheck(booksList);
@@ -126,6 +131,13 @@ public class savedBooks extends Fragment implements ListAdapterSaved{
                         booksList.addAll(books);
                         originalList.addAll(booksList);
                         adapterSaved.notifyDataSetChanged();
+                        if(booksList.isEmpty()){
+                            imgstate.setVisibility(View.VISIBLE);
+                            txtState.setVisibility(View.VISIBLE);
+                        }else{
+                            imgstate.setVisibility(View.GONE);
+                            txtState.setVisibility(View.GONE);
+                        }
                     }
                 });
 
@@ -166,5 +178,12 @@ public class savedBooks extends Fragment implements ListAdapterSaved{
     public void onResume() {
         super.onResume();
         getAllBooks();
+    }
+
+    public void clearBooksList(){
+        booksList.clear();
+        adapterSaved.notifyDataSetChanged();
+        imgstate.setVisibility(View.VISIBLE);
+        txtState.setVisibility(View.VISIBLE);
     }
 }

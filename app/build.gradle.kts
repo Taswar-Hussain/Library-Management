@@ -64,4 +64,7 @@ dependencies {
 
     // Optional - Test helpers
     testImplementation("androidx.room:room-testing:$roomVersion")
+
+    //Borwser tab
+    implementation("androidx.browser:browser:1.8.0")
 }

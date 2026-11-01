@@ -31,6 +31,10 @@
             android:name=".DetailsScreen_SavedBooks"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AboutUs"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

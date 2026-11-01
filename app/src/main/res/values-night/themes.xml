@@ -1,7 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.LibraryMangaement" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+    <style name="Base.Theme.LibraryMangaement"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/library_primary</item>
+        <item name="colorOnPrimary">#24152B</item>
+
+        <item name="colorSecondary">@color/library_secondary</item>
+        <item name="colorOnSecondary">#102523</item>
+
+        <item name="colorSurface">@color/library_bg</item>
+        <item name="colorOnSurface">@color/library_text</item>
+
+        <item name="android:colorBackground">@color/library_bg</item>
+        <item name="colorOnBackground">@color/library_text</item>
+
+        <item name="android:statusBarColor">@color/library_bg</item>
+        <item name="android:navigationBarColor">@color/library_bg</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
     </style>
+
+    <style name="Theme.LibraryMangaement"
+        parent="Base.Theme.LibraryMangaement" />
+
 </resources>

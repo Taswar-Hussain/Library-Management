@@ -22,6 +22,7 @@ public class SavedBooksAdapter extends RecyclerView.Adapter<SavedBooksAdapter.Vi
     List<BooksTable> booksTableList;
     BookForSave onClicked;
 
+
     public SavedBooksAdapter(List<BooksTable> booksTableList, BookForSave onClicked) {
         this.booksTableList = booksTableList;
         this.onClicked = onClicked;
@@ -40,7 +41,20 @@ public class SavedBooksAdapter extends RecyclerView.Adapter<SavedBooksAdapter.Vi
             BooksTable book  = booksTableList.get(position);
 
             holder.title.setText(book.getTitle());
-            holder.author.setText(book.getAuthor1()+","+book.getAuthor2());
+            String author1 = book.getAuthor1();
+            String author2 = book.getAuthor2();
+
+            if(author1 != null && !author1.isEmpty()){
+                if(author2 != null && !author2.isEmpty()){
+                    holder.author.setText(author1+","+author2);
+                }else{
+                    holder.author.setText(author1);
+                }
+            }else{
+                holder.author.setText("Unknown Authors");
+            }
+
+
 
             int cover_id = book.getCover_i();
 

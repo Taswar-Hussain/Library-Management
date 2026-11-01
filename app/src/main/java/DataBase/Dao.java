@@ -22,4 +22,7 @@ public interface Dao {
     List<BooksTable> getAllBooks();
     @Query("SELECT EXISTS(SELECT 1 FROM books WHERE `key` = :bookKey)")
     boolean bookExists(String bookKey);
+
+    @Query("Delete from books")
+    void deleteAllBooks();
 }

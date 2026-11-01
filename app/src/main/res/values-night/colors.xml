@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="library_primary">#D18AE8</color>
+    <color name="library_secondary">#55D6C2</color>
+
+    <color name="library_bg">#121018</color>
+    <color name="library_white">#F4EFF8</color>
+    <color name="library_text">#F4EFF8</color>
+
+    <color name="card_bg">#292333</color>
+    <color name="teal_color">#55D6C2</color>
+    <color name="about_us_cards">#292333</color>
+</resources>

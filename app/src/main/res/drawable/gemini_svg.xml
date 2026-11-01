@@ -1,0 +1,115 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="250dp"
+    android:height="150dp"
+    android:viewportWidth="500"
+    android:viewportHeight="300">
+
+  <!-- Background Shape -->
+  <path
+      android:pathData="M220,80 C330,50 420,100 420,170 C420,230 350,250 260,250 C180,250 100,230 100,170 C100,100 150,100 220,80 Z"
+      android:fillColor="#EBF3FE"/>
+
+  <!-- Ground Line Shadow -->
+  <path
+      android:pathData="M250,249m-200,0a200,6 0,1 1,400 0a200,6 0,1 1,-400 0"
+      android:fillColor="#D3E0F4"/>
+
+  <!-- BOOKSHELF (LEFT) -->
+  <path
+      android:pathData="M50,30h180v220h-180z"
+      android:fillColor="#A06D53"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"
+      android:strokeLineJoin="round"/>
+  <path
+      android:pathData="M62,42h156v196h-156z"
+      android:fillColor="#FAF2E8"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"
+      android:strokeLineJoin="round"/>
+
+  <path
+      android:pathData="M62,110h156 M62,175h156"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"/>
+
+  <!-- Top Shelf Books -->
+  <path
+      android:pathData="M70,55h16v55h-16z"
+      android:fillColor="#48B885"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+  <path
+      android:pathData="M89,62h14v48h-14z"
+      android:fillColor="#E85A5A"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+  <path
+      android:pathData="M106,50h18v60h-18z"
+      android:fillColor="#FF9F43"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+  <path
+      android:pathData="M127,58h12v52h-12z"
+      android:fillColor="#FECB2E"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+
+  <!-- Middle Shelf Books -->
+  <path
+      android:pathData="M72,125h15v50h-15z"
+      android:fillColor="#3A82EE"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+  <path
+      android:pathData="M90,130h18v45h-18z"
+      android:fillColor="#E85A5A"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+  <path
+      android:pathData="M111,120h14v55h-14z"
+      android:fillColor="#48B885"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+
+  <!-- BOOK STACK (RIGHT) -->
+  <path
+      android:pathData="M330,220h110a10,10 0,0 1,10 10v12a10,10 0,0 1,-10 10h-110z"
+      android:fillColor="#E85A5A"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"/>
+  <path
+      android:pathData="M335,188h110a10,10 0,0 1,10 10v12a10,10 0,0 1,-10 10h-110z"
+      android:fillColor="#48B885"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"/>
+  <path
+      android:pathData="M328,156h107a10,10 0,0 1,10 10v12a10,10 0,0 1,-10 10h-107z"
+      android:fillColor="#FECB2E"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"/>
+
+  <!-- MAIN APP ICON (CENTER TILE) -->
+  <path
+      android:pathData="M202,65h96a42,42 0,0 1,42 42v96a42,42 0,0 1,-42 42h-96a42,42 0,0 1,-42 -42v-96a42,42 0,0 1,42 -42z"
+      android:fillColor="#589BFF"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="4"/>
+
+  <!-- Open Book inside Center Tile -->
+  <path
+      android:pathData="M200,170 C220,167 240,175 248,180 L248,112 C240,107 220,99 200,102 Z"
+      android:fillColor="#FFFFFF"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"/>
+  <path
+      android:pathData="M300,170 C280,167 260,175 252,180 L252,112 C260,107 280,99 300,102 Z"
+      android:fillColor="#FFFFFF"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="3.5"/>
+  <path
+      android:pathData="M264,105h16v45l-8,-8l-8,8z"
+      android:fillColor="#3A82EE"
+      android:strokeColor="#2D3A56"
+      android:strokeWidth="2.5"/>
+</vector>

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -81,14 +83,20 @@ public class DetailsScreen_Browse extends AppCompatActivity {
 
                 if(key != null && !key.isEmpty()){
                     String url = "https://openlibrary.org"+key;
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    startActivity(intent);
+
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    builder.setToolbarColor(ContextCompat.getColor(DetailsScreen_Browse.this,R.color.library_primary));
+                    builder.setShowTitle(true);
+
+                    CustomTabsIntent intent = builder.build();
+                    intent.launchUrl(DetailsScreen_Browse.this,Uri.parse(url));
                 }else{
                     Toast.makeText(DetailsScreen_Browse.this, "Book is not avialable", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
     }
     private String formatStringauthors(List<String> authorsl){
         String formattedAuthors;

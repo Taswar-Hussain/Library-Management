@@ -5,21 +5,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.search.SearchBar;
+import com.google.android.material.search.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +68,8 @@ public class BrowseBooks extends Fragment implements OnClickedListner {
     TextView txtErromsg;
 
     MaterialButton retrybtn;
+
+    EditText editText;
 
 
 
@@ -130,6 +141,8 @@ public class BrowseBooks extends Fragment implements OnClickedListner {
         imgNetwork = view.findViewById(R.id.imgState);
         retrybtn = view.findViewById(R.id.retry);
 
+        editText = view.findViewById(R.id.etSearch);
+
         progressBar = view.findViewById(R.id.progressBar);
 
         adapterCheck(booksList);
@@ -144,6 +157,55 @@ public class BrowseBooks extends Fragment implements OnClickedListner {
             public void onClick(View v) {
                 internetOn();
                 fetchBooks();
+            }
+        });
+
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                MaterialToolbar toolbar = requireActivity().findViewById(R.id.tool_bar);
+                if(toolbar != null) {
+                    if(hasFocus) {
+                        toolbar.setVisibility(View.GONE);
+                    }else{
+                        toolbar.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH){
+                    String searched = editText.getText().toString().trim();
+
+                    if(!searched.isEmpty()){
+                        searchedBooks(searched);
+                    }else{
+                        Toast.makeText(requireContext(), "Please enter a book name!", Toast.LENGTH_SHORT).show();
+                    }
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if(imm != null){
+                        imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameLayout, new savedBooks()).commit();
+
+               BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
+                if(bottomNavigationView != null){
+                    bottomNavigationView.setSelectedItemId(R.id.saveM);
+                }
             }
         });
 
@@ -243,5 +305,35 @@ public class BrowseBooks extends Fragment implements OnClickedListner {
         retrybtn.setVisibility(getView().GONE);
     }
 
+    public void searchedBooks(String searchedBook){
+        progressBar.setVisibility(View.VISIBLE);
+        Call call = api.getBooksSearch(searchedBook);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                internetOn();
+                if(response.isSuccessful() && response.body() != null){
+                    BookResponseModel responseModel = (BookResponseModel) response.body();
+                    List<docs> searchedlist =  responseModel.getBooks();
+                    if(searchedlist.isEmpty()){
+                        Toast.makeText(requireContext(), "Couldn't find books", Toast.LENGTH_SHORT).show();
+                    }else{
+                        booksList.clear();
+                        booksList.addAll(searchedlist);
+                        progressBar.setVisibility(View.GONE);
+                        adapterBooks.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable throwable) {
+                internetOn();
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+    }
 
 }
